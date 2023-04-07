@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {User, Restaurant, Roles} = require('../models');
+const {User, Restaurant, Roles, Hours} = require('../models');
 const bcrypt = require('bcrypt');
 const validInfo = require('../middleware/validinfo');
 const validInfoRestaurant = require('../middleware/validinforestaurant')
@@ -214,6 +214,18 @@ router.post("/register/restaurant_registration", validInfoRestaurant, async (req
         })
 
         await newRestaurant.addUser(user)
+
+        for (let i = 0; i < 7; i++) {
+            let newRestaurantHours = await Hours.create({
+                weekday: i,
+                restaurantId: newRestaurant.id
+            })
+            await newRestaurantHours.save();
+        }
+        // const newRestaurantHours = await Hours.create({
+        // })
+
+        // await newRestaurantHours.save();
         
         return res.status(200).json("Success")
     } catch (err) {

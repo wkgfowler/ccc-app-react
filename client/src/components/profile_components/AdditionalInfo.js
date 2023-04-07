@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Fragment, useContext, useRef } from "react";
 import { UserContext } from "../../context/UserContext";
-import Checkbox from "./Checkbox";
+import Checkbox from "../subcomponents/Checkbox";
 
 const AdditionalInfo = () => {
     const {user, setUser} = useContext(UserContext)

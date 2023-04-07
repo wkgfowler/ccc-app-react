@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { PermissionContext } from "../context/PermissionContext";
 import { UserContext } from "../context/UserContext";
 import Admin from "./admin_components/Admin";
-import AdditionalInfo from "./subcomponents/AdditionalInfo";
+import AdditionalInfo from "./profile_components/AdditionalInfo";
 
 const Profile = () => {
     const [valid, isValid] = useState(true)
@@ -40,41 +40,52 @@ const Profile = () => {
     if (valid) {
         if (user && permission === 1) {
             return (
-                <Fragment>
+                <div>
                     <h1>Basic User Page</h1>
                     <h1>{user.email}</h1>
-                </Fragment>
+                </div>
             )
         } else if (user && permission === 2) {
             return (
-                <Fragment>
-                    <h1>Restaurant Edit Page</h1>
-                    {user.Restaurants.map(x => (
-                        <Link to={`/restaurants/${x.id}`}>{x.restaurant_name}</Link>
-                        ))
-                    }
-                    <h1>{user.Restaurants.restaurant_name}</h1>
-                </Fragment>
+                <div className="flex justify-center">
+                    <table className="w-1/2">
+                        <thead>
+                            <th>{user.Restaurants.length > 1 ? <p className="text-3xl">Your Restaurants:</p> : <p className="text-3xl">Your restaurant</p>}</th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                            {user.Restaurants.map(x => (
+                                <tr key={x.id}>
+                                    <td><p className="text-2xl">{x.restaurant_name}</p></td>
+                                    <td><button className="border border-white p-2 rounded-lg"><Link to={`/restaurants/${x.id}`}>View restaurant page</Link></button></td>
+                                    <td><button className="border border-white p-2 rounded-lg">Edit Additional Info</button></td>
+                                    <td><button className="border border-white p-2 rounded-lg"><Link to={`/hours/${x.id}`}>Edit Hours</Link></button></td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                    
+                </div>
             )
         } else if (user && permission === 3) {
             return (
-                <Fragment>
+                <div>
                     <h1>Admin Page</h1>
                     <Admin/>
-                </Fragment>
+                </div>
             )
         } else {
             return (
-                <Fragment>
+                <div>
                     <h1>Not Authorized</h1>
-                </Fragment>
+                </div>
             )
         }
     } else {
         return (
-            <Fragment>
+            <div>
                 <h1>Not Authorized</h1>
-            </Fragment>
+            </div>
         )
     }
 }

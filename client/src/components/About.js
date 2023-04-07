@@ -1,5 +1,5 @@
 import React, {Fragment} from "react";
-import HoursForm from "./subcomponents/HoursForm";
+import HoursForm from "./profile_components/HoursForm";
 
 const About = () => {
     
