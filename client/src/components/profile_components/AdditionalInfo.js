@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Fragment, useContext, useRef } from "react";
+import { useContext, useRef } from "react";
 import { UserContext } from "../../context/UserContext";
 import Checkbox from "../subcomponents/Checkbox";
 
@@ -40,9 +40,32 @@ const AdditionalInfo = () => {
     };
     
     return (
-        <Fragment>
-            <h1>Additional Information</h1>
-            <form onSubmit={onSubmitForm}>
+        <div className="flex justify-center">
+            <form>
+                <p className="text-2xl pt-4 pb-2 text-center underline">Additional Information</p>
+                <div className="grid grid-cols-4 pb-2">
+                    <div>
+                        <input type="checkbox" name="" id="" />
+                        <label htmlFor="">Breakfast</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="" id="" />
+                        <label htmlFor="">Brunch</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="" id="" />
+                        <label htmlFor="">Lunch</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="" id="" />
+                        <label htmlFor="">Dinner</label>
+                    </div>
+                </div>
+                <div className="grid grid-cols-1">
+
+                </div>
+            </form>
+            {/* <form onSubmit={onSubmitForm}>
                 <Checkbox label="Breakfast" ref={breakfastRef} />
                 <Checkbox label="Lunch" ref={lunchRef} />
                 <Checkbox label="Dinner" ref={dinnerRef} />
@@ -51,8 +74,8 @@ const AdditionalInfo = () => {
                 <input type="text" name="facebook_url" placeholder={user.Restaurant.facebook_url ? user.Restaurant.facebook_url : "Your restaurant's Facebook"} ref={facebookRef} />
                 <input type="text" name="instagram_url" placeholder={user.Restaurant.instagram_url ? user.Restaurant.instagram_url : "Your restaurant's Instagram"} ref={instagramRef} />
                 <button>Submit</button>
-            </form>
-        </Fragment>
+            </form> */}
+        </div>
     );
 }
  

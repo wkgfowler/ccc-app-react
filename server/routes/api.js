@@ -24,16 +24,41 @@ router.get("/:id", authorization, async (req, res) => {
 })
 
 
+// getting restaurant contact info
+router.get("/get_contact_info/:restaurantId/:userId", authorization, async (req, res) => {
+    try {
+        const validUser = await Restaurant.findOne({
+            where: {
+                id: req.params.restaurantId
+            }, include: {
+                model: User, where: { id: req.params.userId }
+            }
+        })
+
+        if (validUser) {
+            const restaurantInfo = await Restaurant.findOne({
+                where: {
+                    id: req.params.restaurantId
+                }
+            })
+            
+            return res.json(restaurantInfo);
+        }
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
 // adding restaurant contact info
 router.post("/contact_info", authorization, async (req, res) => {
     try {
         const restaurant = await Restaurant.findOne({
             where: {
-                UserId: req.body.id
+                id: req.body.id
             }
         });
 
-        const updatedRestaurant = await Restaurant.set({
+        const updatedRestaurant = await restaurant.set({
             street_address: req.body.street_address,
             town: req.body.town,
             phone_number: req.body.phone_number
@@ -47,13 +72,12 @@ router.post("/contact_info", authorization, async (req, res) => {
 })
 
 
-
 // updating restaurant additional info
 router.post("/additional_info", authorization, async (req, res) => {
     try {
         const restaurant = await Restaurant.findOne({
             where: {
-                UserId: req.body.id
+                id: req.body.id
             }
         });
 
@@ -94,7 +118,13 @@ router.get("/get_hours/:restaurantId/:userId", authorization, async (req, res) =
                 }
             })
 
-            return res.json({valid: true, hours})
+            const restaurant = await Restaurant.findOne({
+                where: {
+                    id: req.params.restaurantId
+                }
+            })
+
+            return res.json({valid: true, hours, restaurant})
         } 
 
         return res.json({valid: false});
@@ -105,6 +135,18 @@ router.get("/get_hours/:restaurantId/:userId", authorization, async (req, res) =
 
 router.post("/update_hours", authorization, async (req, res) =>{
     try {
+        const restaurant = await Restaurant.findOne({
+            where: {
+                id: req.body.restaurantId
+            }
+        });
+        const restaurantMealtimes = await restaurant.set({
+            breakfast: req.body.breakfast,
+            brunch: req.body.brunch,
+            lunch: req.body.lunch,
+            dinner: req.body.dinner
+        })
+        await restaurantMealtimes.save();
         const sundayHours = await Hours.findOne({
             where: {
                 restaurantId: req.body.restaurantId,

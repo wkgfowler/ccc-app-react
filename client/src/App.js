@@ -19,7 +19,7 @@ import Profile from "./components/Profile";
 import RegisterUserToRestaurant from "./components/auth_components/RegisterUserToRestaurant";
 import ResetPasswordRequest from "./components/auth_components/ResetPasswordRequest";
 import ResetPasswordLink from "./components/auth_components/ResetPasswordLink";
-import HoursForm from "./components/profile_components/HoursForm";
+import EditInfo from "./components/profile_components/EditInfo";
 
 function App() {
   const [user, setUser] = useState("");
@@ -43,7 +43,7 @@ function App() {
             <Route path='/register_restaurant/:token' element={<RegisterRestaurant/>} />
             <Route path='/register/:restaurant/:token' element={<RegisterUserToRestaurant />} />
             <Route path='/profile/:id' element={<Profile/>} />
-            <Route path='/hours/:restaurantId' element={<HoursForm />}/>
+            <Route path='/edit/:restaurantId' element={<EditInfo />}/>
             
             <Route path='/all_restaurants' element={<AllRestaurants/>} />
             <Route path='/restaurants/:id' element={<Restaurant/>} />

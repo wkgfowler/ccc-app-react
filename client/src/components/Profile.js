@@ -58,8 +58,7 @@ const Profile = () => {
                                 <tr key={x.id}>
                                     <td><p className="text-2xl">{x.restaurant_name}</p></td>
                                     <td><button className="border border-white p-2 rounded-lg"><Link to={`/restaurants/${x.id}`}>View restaurant page</Link></button></td>
-                                    <td><button className="border border-white p-2 rounded-lg">Edit Additional Info</button></td>
-                                    <td><button className="border border-white p-2 rounded-lg"><Link to={`/hours/${x.id}`}>Edit Hours</Link></button></td>
+                                    <td><button className="border border-white p-2 rounded-lg"><Link to={`/edit/${x.id}`}>Edit Restaurant</Link></button></td>
                                 </tr>
                             ))}
                         </tbody>
