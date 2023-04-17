@@ -159,6 +159,7 @@ const HoursForm = () => {
                         <label htmlFor="">Breakfast</label>
                     </div>
                     <div>
+<<<<<<< HEAD
                         {restaurant.brunch === "true" ? <input type="checkbox" name="brunch" id="brunch" checked /> : <input type="checkbox" name="brunch" id="brunch" />}
                         <label htmlFor="">Brunch</label>
                     </div>
@@ -168,6 +169,17 @@ const HoursForm = () => {
                     </div>
                     <div>
                         {restaurant.dinner === "true" ? <input type="checkbox" name="dinner" id="dinner" checked/> : <input type="checkbox" name="dinner" id="dinner" />}
+=======
+                        <input type="checkbox" name="brunch" id="brunch" />
+                        <label htmlFor="">Brunch</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="lunch" id="lunch" />
+                        <label htmlFor="">Lunch</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="dinner" id="dinner" />
+>>>>>>> 9ce905a868e2a0c1b99f105cb45088e5e9ca9053
                         <label htmlFor="">Dinner</label>
                     </div>
                 </div>

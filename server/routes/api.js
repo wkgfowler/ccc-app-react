@@ -82,10 +82,20 @@ router.post("/additional_info", authorization, async (req, res) => {
         });
 
         const updatedRestuarant = await restaurant.set({
+<<<<<<< HEAD
             website_url: req.body.website_url,
             facebook_url: req.body.facebook_url,
             instagram_url: req.body.instagram_url,
             description: req.body.description
+=======
+            breakfast: req.body.breakfast,
+            lunch: req.body.lunch,
+            dinner: req.body.dinner,
+            brunch: req.body.brunch,
+            website_url: req.body.website_url,
+            facebook_url: req.body.facebook_url,
+            instagram_url: req.body.instagram_url
+>>>>>>> 9ce905a868e2a0c1b99f105cb45088e5e9ca9053
         });
 
         await updatedRestuarant.save();
